@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcription Hub - {{ title }}</title>
+    <link rel="stylesheet" href= "{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+    <div class="flex items-center justify-center flex-col min-h-screen" onsubmit="return validateForm()">
+        <form method="post" enctype="multipart/form-data">
+            <div class="card w-96 bg-neutral text-neutral-content flex items-center justify-center flex-col ">
+                <div class="card-body items-center text-center">
+                    <h2 class="card-title">Select the File</h2>
+                    <input name="audio" id="audio" accept="audio/mp3,audio/wav" type="file"
+                        class="file-input file-input-bordered file-input-success w-full max-w-xs"/>
+                    <div class="card-actions justify-center">
+                        <input class="btn btn-success" type="submit" value="Transcript">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var fileInput = document.getElementById('audio');
+            if (!fileInput.value) {
+                alert('Please select a file to upload.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

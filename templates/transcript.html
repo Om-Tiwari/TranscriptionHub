@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transcription Hub - {{ content }}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+    <script src="https://kit.fontawesome.com/2b554022ef.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="flex items-center justify-center flex-col min-h-screen">
+        {% if content %}
+        <textarea class="textarea border-s-white min-w-[50%] min-h-[50%]">
+            {{ content }}
+        </textarea>
+        <ul class="menu menu-horizontal bg-base-200 rounded-box mt-10">
+            <li>
+                <a href="{{ url_for('home') }}">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li>
+                <a onclick="copyToClipboard()">
+                    <i class="far fa-copy"></i>
+                </a>
+            </li>
+        </ul>
+        {% else %}
+        <p>No content to display. If you think this is wrong please try again</p>
+        <ul class="menu menu-horizontal bg-base-200 rounded-box mt-10">
+            <li>
+                <a href="{{ url_for('home') }}">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+        </ul>
+        {% endif %}
+    </div>
+    
+    <script>
+        function copyToClipboard() {
+            const textarea = document.querySelector(".textarea");
+            textarea.select();
+            document.execCommand("copy");
+        }
+    </script>
+</body>
+
+</html>
